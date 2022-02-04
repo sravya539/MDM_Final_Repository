@@ -54,7 +54,7 @@ export default function ContentComponent() {//contains textfields and dropdowns
   const [dtr, setdtr] = useState([]);
   const [newDtr, setNewDtr] = useState([]);
 
-
+ 
   const onRegion = (e) => {
     console.log(e.target.value);
     const circ = Circle.filter((cir) => {
@@ -64,7 +64,7 @@ export default function ContentComponent() {//contains textfields and dropdowns
     setCircle(circ);
     setnewRegion(e.target.value);
   }
-
+ //function to filter the circle' according to the selection of region
   const onCircle = (e) => {
     e.preventDefault();
     console.log(e.target.value);
