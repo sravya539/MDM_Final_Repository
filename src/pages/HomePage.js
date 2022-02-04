@@ -7,6 +7,8 @@ import SelectedComponent from './SelectedComponent';
 import DummyComponent from '../components/DummyComponent';
 //import { useEffect, useRef } from 'react';
 import CustomizedAccordions from '../components/staticComponents/DropDown';
+//commenting for testing purpose
+
 
 const HomePage = () => {// a constant component
 	//useSelector() is a hook to extract data from state
