@@ -23,9 +23,11 @@ const HomePage = () => {// a constant component
 				<Grid item xs={12}>
 
 					//imported properties
+				
 					<Header />
 				</Grid>
 				<Grid item xs={2}>
+					//imported
 					<CustomizedAccordions />
 				</Grid>
 				<Grid item xs={10} md={12} l={12}>
