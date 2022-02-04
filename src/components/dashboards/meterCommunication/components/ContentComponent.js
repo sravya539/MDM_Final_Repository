@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Stack, Button, Box, Grid, Typography, MenuItem } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-import { Regions, Circles } from './Dropdowns';
+
 import Divisions from '../utils/Divisions.json';
 import SubDivisions from '../utils/SubDivisions.json';
 import Sections from '../utils/Sections.json';
 import SubStations from '../utils/SubStations.json';
 import Feeders from '../utils/Feeders.json';
-import DTR from '../utils/DTR.json'
+import DTR from '../utils/DTR.json';
+import Region from '../utils/Region.json';
+import Circle from '../utils/Circle.json';  
 
 export default function ContentComponent() {//contains textfields and dropdowns 
 
@@ -28,9 +30,14 @@ export default function ContentComponent() {//contains textfields and dropdowns
 
   //useState(initialValues) hook is used to set and store initialized values 
   const [values, setValues] = useState(initialValues);
+  const [newRegion, setnewRegion] = useState([]);
+  const [circle, setCircle] = useState([]);
+  const [newCircle, setnewCircle] = useState([]);
 
   //useState([]) hook is used to set and store division to empty array initially
   const [division, setDivision] = useState([]);
+  const [newDivision, setNewDivision] = useState([]);
+
   //useState([]) hook is used to set and store sub-division to empty array initially
   const [subDivision, setSubDivision] = useState([]);
   const [newSubdiv, setNewSubdiv] = useState([]);
@@ -47,14 +54,41 @@ export default function ContentComponent() {//contains textfields and dropdowns
   const [dtr, setdtr] = useState([]);
   const [newDtr, setNewDtr] = useState([]);
 
-  const onDivision = (e) => {//function to filter the sub divisions' according to the selection of division
+
+  const onRegion = (e) => {
+    console.log(e.target.value);
+    const circ = Circle.filter((cir) => {
+      return cir.reg_name === e.target.value;
+    })
+    console.log(circ);
+    setCircle(circ);
+    setnewRegion(e.target.value);
+  }
+
+  const onCircle = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const divs = Divisions.filter((div) => {
+      return div.cir_name === e.target.value;
+    });
+    console.log(divs);
+    setNewDivision(divs);
+    setnewCircle(e.target.value);
+  };
+
+
+
+  //function to filter the sub divisions' according to the selection of division
+
+  const onDivision = (e) => {
     console.log(e.target.value);
     const subdivs = SubDivisions.filter((subdiv) => {
       return subdiv.div_name === e.target.value;
     });
     console.log(subdivs);
-    setDivision(e.target.value);
     setSubDivision(subdivs);
+    setDivision(e.target.value);
+
   };
 
   //function to filter the sections' according to the selection of sub-divisions
@@ -151,62 +185,62 @@ export default function ContentComponent() {//contains textfields and dropdowns
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <TextField
-              id="outlined-select-currency-native"
-              select
-              fullWidth
-              label="Region"
-              variant="standard"
+          <TextField
+            id="outlined-select-currency-native"
+            select
+            fullWidth
+            required label="Region"
+            variant="standard"
+            name="Region"
+            value={newRegion}
+            onChange={onRegion}
+          >
+            {Region.map(item => (
+              <option key={item.name} value={item.name}>
+                {item.name}
+              </option>
+            ))}
 
-              name="Region"
-              value={values.Region}
-              onChange={handleInputChange}
-            >
-              {Regions.map(item => (
-                <option key={item.label} value={item.label}>
-                  {item.label}
-                </option>
-              ))}
-
-            </TextField>
+          </TextField>
+ 
           </Grid>
           <Grid item xs={3}>
-            <TextField
-              id="outlined-select-currency-native"
-              select
-              fullWidth
-              required label="Circle"
-              variant="standard"
-              name="Circle"
-              value={values.Circle}
-              onChange={handleInputChange}
-            >
-              {Circles.map(item => (
-                <option key={item.label} value={item.label}>
-                  {item.label}
-                </option>
-              ))}
+          <TextField
+            id="outlined-select-currency-native"
+            select
+            fullWidth
+            required label="Circle"
+            variant="standard"
+            name="Circle"
+            value={newCircle}
+            onChange={onCircle}
+          >
+            {circle.map(item => (
+              <option value={item.name} key={item.cir_id}>
+                {item.name}
+              </option>
+            ))}
 
-            </TextField>
+          </TextField>
           </Grid>
 
           <Grid item xs={3}>
-            <TextField
-              name="division"
-              select
-              fullWidth
-              variant="standard"
-              color="primary"
-              label="select division"
-              onChange={onDivision}
-              value={division}
-            >
-              {Divisions.map((division) => (
-                <MenuItem value={division.name} key={division.div_id}>
-                  {division.name}
-                </MenuItem>
-              ))}
-            </TextField>
+          <TextField
+            name="division"
+            select
+            fullWidth
+            variant="standard"
+            color="primary"
+            label="select division"
+            onChange={onDivision}
+            value={division}
+          >
+            {newDivision.map((division) => (
+              <MenuItem value={division.name} key={division.div_id}>
+                {division.name}
+              </MenuItem>
+            ))}
+          </TextField>
           </Grid>
 
           <Grid item xs={3}>
