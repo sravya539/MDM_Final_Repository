@@ -10,7 +10,8 @@ import {
 	Box,
 	TextField,
 	Grid,
-	Card
+	Card,
+	Paper
 } from '@mui/material';
 import { simTypes, DCU } from './Dropdowns';
 import { CssBaseline } from '@material-ui/core';
@@ -57,11 +58,14 @@ export default function SimMaster() {
 		<div>
 			
 			<SimAppBar />
-			<Card elevation={10} sx={{ pt: 4, pb: 12, pl: 5 }}>
-			<Box sx={{ display: 'flex', pt: 3,pb:28, m: 1, flexDirection: 'row' }}>
+		<br/>
+			<Card elevation={10} sx={{ pt: -19, pb: -8, pl: 1 ,maxHeight:400}} style={{borderRadius:20}}>
+			
+			<Box sx={{ display: 'Auto', pt: 6,pb:10, m: 1, flexDirection: 'row' }}>
 					
-						<Grid container rowSpacing={8} columnSpacing={ 3 }>
-                       
+						<Grid container rowSpacing={4} columnSpacing={ 4 }>
+						<Grid item xs={2}/>
+							
 						  <Grid item xs={3}>
 						<TextField
 						fullWidth
@@ -83,7 +87,7 @@ export default function SimMaster() {
 							))}
 						</TextField>
 						</Grid>
-								<Grid xs={3}>
+								<Grid item xs={3}>
 						<TextField
 						fullWidth
 							id="outlined-select-currency-native"
@@ -104,7 +108,7 @@ export default function SimMaster() {
 							))}
 						</TextField>
                         </Grid>
-						<Grid xs={4}>
+						<Grid item xs={3}>
 						
 						
 							<TextField
@@ -118,7 +122,8 @@ export default function SimMaster() {
 							>
 								</TextField>
 								</Grid>
-								<Grid xs={3}>
+								<Grid item xs={2}/>
+								<Grid item xs={3}>
 							<TextField
 							fullWidth
 								id="outlined-select-currency-native"
@@ -134,7 +139,7 @@ export default function SimMaster() {
 					
 					</Grid>
 					
-					<Grid xs={4}>
+					<Grid item xs={3}>
 
 						
 							<TextField
@@ -157,7 +162,7 @@ export default function SimMaster() {
 								))}
 							</TextField>
 							</Grid>
-							<Grid xs={3}>
+							<Grid item xs={3}>
 
 							<TextField
 							fullWidth
@@ -171,7 +176,8 @@ export default function SimMaster() {
 							</TextField>
 						
 					</Grid>
-						<Grid xs={4}>
+					<Grid item xs={2} />
+						<Grid item xs={3} >
 								<FormControl component="fieldset">
 									<Typography variant="h6" alignItems="center">
 										IP Type
@@ -190,7 +196,7 @@ export default function SimMaster() {
 								</FormControl>
 							</Grid>
 
-							<Grid xs={4}>
+							<Grid item xs={3}>
 								<FormControl component="fieldset">
 									<Typography variant="h6" alignItems="center">
 										Type of IP
@@ -208,9 +214,9 @@ export default function SimMaster() {
 								</FormControl>{' '}
 							</Grid>
 						
-								<Grid xs={4}>	
+								<Grid item xs={4}>	
 						<TextField
-						fullWidth
+						
 							id="outlined-select-currency-native"
 							native="outlined"
 							required
@@ -222,16 +228,12 @@ export default function SimMaster() {
 							{' '}
 						</TextField>
 						</Grid>
-						<Grid xs={4}>
-						<Stack spacing={2} direction="row" justifyContent="center">
-							<Button variant="contained" color="success" onClick={handleSubmit}>
-								SUBMIT{' '}
-							</Button>
-							<Button variant="contained" color="warning">
-								CLEAR
-							</Button>
-						</Stack>
-						</Grid>
+						<Grid item xs={12} md={12}>
+            <Stack spacing={2} direction="row" justifyContent="center">
+              <Button variant="contained" color="success" onClick={handleSubmit}>SUBMIT </Button>
+              <Button variant="contained">CLEAR</Button>
+            </Stack>
+          </Grid>
 						</Grid>
 								
 					</Box>

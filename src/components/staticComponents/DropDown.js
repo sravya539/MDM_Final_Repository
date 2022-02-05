@@ -165,7 +165,7 @@ export default function MiniDrawer() {
 		<Box sx={{ display: 'flex' }}>
 		
 			<CssBaseline />			
-			<AppBar style={{borderRadius:'30px'}} open={open}>
+			<AppBar style={{borderRadius:'30px',background: '#29434e'}} open={open} >
 				<Toolbar>
 					<IconButton
 						color="inherit"
@@ -204,7 +204,7 @@ export default function MiniDrawer() {
 				</Toolbar>
 				
 			</AppBar>
-			<Drawer variant="permanent" open={open}>
+			<Drawer variant="permanent" open={open} style={{background: '#29434e'}}>
 				<DrawerHeader>
 				<CloudIcon />
 				<Typography parent variant='h4'>MDM</Typography>
@@ -486,9 +486,9 @@ export default function MiniDrawer() {
 				<Divider />
 					
 			</Drawer>
-			<Box component="main" >		
+			<Box component="main" sx={{ flexGrow: 10, p: 3 }}>
 			<DrawerHeader />
-			<Grid container spacing={2}>		
+			<Grid container spacing={5}>		
 			<Grid sx={12}>
 			{component ? <SelectedComponent component={component} /> : <DummyComponent />}
 			</Grid>
