@@ -108,15 +108,20 @@ export default function MeterParameters() {
             </TextField>
 
             <TextField
-              id="outlined-select-currency"
+              id="outlined-select-currency-native"
               select
               label="Sections"
+              value={currency}
 
+              onChange={handleChange}
+              SelectProps={{
+                native: true,
+              }}
             >
               {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+                <option key={option.value} value={option.value}>
                   {option.label}
-                </MenuItem>
+                </option>
               ))}
             </TextField>
           </div>
@@ -175,15 +180,20 @@ export default function MeterParameters() {
             </TextField>
 
             <TextField
-              id="outlined-select-currency"
+              id="outlined-select-currency-native"
               select
               label="Division"
+              value={currency}
 
+              onChange={handleChange}
+              SelectProps={{
+                native: true,
+              }}
             >
               {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+                <option key={option.value} value={option.value}>
                   {option.label}
-                </MenuItem>
+                </option>
               ))}
             </TextField>
             <TextField

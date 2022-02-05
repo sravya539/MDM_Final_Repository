@@ -32,10 +32,12 @@ import CastForEducationIcon from '@mui/icons-material/CastForEducation';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import FastForwardIcon from '@mui/icons-material/FastForward';
+import CloudIcon from '@mui/icons-material/Cloud';
 import { Switch, Grid,Paper } from "@material-ui/core";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
-import { useDispatch } from 'react-redux';
+import SelectedComponent from '../../pages/SelectedComponent';
+import DummyComponent from '../DummyComponent';
+import { useDispatch ,useSelector} from 'react-redux';
 
 const drawerWidth = 320;
 
@@ -63,6 +65,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
+	position :'static',	
 	justifyContent: 'flex-end',
 	padding: theme.spacing(0, 1),
 	// necessary for content to be below app bar
@@ -92,6 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 		width: drawerWidth,
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
+      
 		boxSizing: 'border-box',
 		...(open && {
 			...openedMixin(theme),
@@ -112,7 +116,7 @@ export default function MiniDrawer() {
 		type: darkMode ? "dark" : "light",  
 	  },  
 	})
-  
+	const component = useSelector((state) => state.componentChange.component);
   
 	//useState() to store and set the data to open panel0 accordian details initially
 	const [ expanded, setExpanded ] = useState('panel0');
@@ -157,11 +161,11 @@ export default function MiniDrawer() {
 		setConf(!conf);
 	}
 	return (	
-	
+	<>
 		<Box sx={{ display: 'flex' }}>
 		
 			<CssBaseline />			
-			<AppBar style={{borderRadius:'20px'}} open={open}>
+			<AppBar style={{borderRadius:'30px'}} open={open}>
 				<Toolbar>
 					<IconButton
 						color="inherit"
@@ -202,12 +206,14 @@ export default function MiniDrawer() {
 			</AppBar>
 			<Drawer variant="permanent" open={open}>
 				<DrawerHeader>
+				<CloudIcon />
 				<Typography parent variant='h4'>MDM</Typography>
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
+				
 				<List>
 					<ListItemButton onClick={handleClick}>
 					<ListItemIcon>
@@ -478,11 +484,18 @@ export default function MiniDrawer() {
 					</Collapse>
 				</List>
 				<Divider />
-			</Drawer>				
-			
-			
-
+					
+			</Drawer>
+			<Box component="main" >		
+			<DrawerHeader />
+			<Grid container spacing={2}>		
+			<Grid sx={12}>
+			{component ? <SelectedComponent component={component} /> : <DummyComponent />}
+			</Grid>
+			</Grid>
+				</Box>
 		</Box>
 	
+	</>
 	);
 }
