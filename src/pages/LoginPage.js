@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 //comments in login page
 //commented by devi
-
+//commented by GSDR
 const LoginPage = () => {
 
 	const validationSchema = Yup.object().shape({
